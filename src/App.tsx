@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
+import TradePage from "./pages/trade/TradePage";
 
-function App() {
+const HomePage = lazy(() => import("./pages/home/HomePage"));
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/">
+        {/* HOME PAGE */}
+        <Route
+          index
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <HomePage />
+            </Suspense>
+          }
+        />
+
+        {/* TRADE PAGE */}
+        <Route
+          path="trade"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <TradePage />
+            </Suspense>
+          }
+        />
+      </Route>
+    </Routes>
   );
-}
+};
 
 export default App;
