@@ -3,12 +3,16 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { setDevices } from "../../redux/actions";
 import { Button } from "rsuite";
 import styled from "styled-components";
+import { Outlet } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+const H1 = styled.h1`
+  color: ${({ theme }) => theme.seccoundColor};
 `;
 
 const HomePage = () => {
@@ -20,9 +24,10 @@ const HomePage = () => {
 
   return (
     <Container>
-      <h1>hi</h1>
+      <H1>hi</H1>
       <Button onClick={() => dispatch(setDevices("salam"))}>dispatch</Button>
       <Button onClick={() => dispatch(setDevices("sasdfdsf"))}>sdf</Button>
+      <Outlet />
     </Container>
   );
 };

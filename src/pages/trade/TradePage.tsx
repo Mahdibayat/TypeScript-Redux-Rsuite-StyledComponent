@@ -1,12 +1,16 @@
 import React from "react";
+import styled from "styled-components";
+
+const Container = styled.div`
+  width: 100%;
+`;
 
 const TradePage = () => {
   return (
-    <div>
+    <Container>
       <h1>TRADE PAGE</h1>
-    </div>
+    </Container>
   );
 };
 
 export default TradePage;
-<h1>TRADE PAGE</h1>;

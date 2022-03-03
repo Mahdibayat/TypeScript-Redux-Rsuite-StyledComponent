@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
+import RootLayout from "./layouts/RootLayout";
 import TradePage from "./pages/trade/TradePage";
 
 const HomePage = lazy(() => import("./pages/home/HomePage"));
@@ -7,7 +8,15 @@ const HomePage = lazy(() => import("./pages/home/HomePage"));
 const App = () => {
   return (
     <Routes>
-      <Route path="/">
+      {/* HEADER FOOTER AND OUTER GLOBAL ITEM */}
+      <Route
+        path="/"
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <RootLayout />
+          </Suspense>
+        }
+      >
         {/* HOME PAGE */}
         <Route
           index
