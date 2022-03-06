@@ -24,14 +24,30 @@ const Div = styled.div`
   align-items: center;
   gap: 15px;
 `;
+const LogoArea = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
+  img {
+    height: 60px;
+  }
+`;
 
 const HeaderLayout = () => {
   return (
     <Container>
       {/* LEFT CONTENT */}
       <Div>
-        <h1>HEADER</h1>
-        <h1>HEADER</h1>
+        <Div>
+          <LogoArea>
+            <img src="/logo.png" alt="logo" />
+            <h3>
+              <strong>Arix Dex</strong>
+            </h3>
+          </LogoArea>
+        </Div>
+        <Div>jdsaFHl</Div>
       </Div>
       {/* RIGHT CONTENT */}
       <Div>

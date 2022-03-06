@@ -8,6 +8,7 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { ThemeType } from "./scripts/interfaces";
+import { Link } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -37,6 +38,11 @@ ReactDOM.render(
           <ThemeProvider theme={theme}>
             <GlobalStyle />
             <App />
+            {/* ALL LINKS INVISIBLE */}
+            <div style={{ display: "none" }}>
+              <Link to="/" id="toHome" />
+              <Link to="/trade" id="toTrade" />
+            </div>
           </ThemeProvider>
         </CustomProvider>
       </BrowserRouter>
