@@ -1,5 +1,13 @@
-import { Button } from "rsuite";
+import { Link } from "react-router-dom";
+import { Button, Dropdown, Modal } from "rsuite";
 import styled from "styled-components";
+import { Icon } from "@rsuite/icons";
+import { IoMdSettings } from "react-icons/io";
+import { BiWallet } from "react-icons/bi";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { modalConnect, modalSetting } from "../redux/actions";
+import ModalConnect from "../components/modals/ModalConnect";
+import ModalSetting from "../components/modals/ModalSetting";
 
 const Container = styled.div`
   width: 100%;
@@ -35,27 +43,63 @@ const LogoArea = styled.div`
 `;
 
 const HeaderLayout = () => {
+  const dispatch = useAppDispatch();
   return (
     <Container>
       {/* LEFT CONTENT */}
       <Div>
         <Div>
           <LogoArea>
-            <img src="/logo.png" alt="logo" />
-            <h3>
-              <strong>Arix Dex</strong>
-            </h3>
+            <Link to="/">
+              <img src="/logo.png" alt="logo" />
+            </Link>
           </LogoArea>
         </Div>
-        <Div>jdsaFHl</Div>
+        <Div>
+          <a
+            href="https://site.arix.exchange/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            About
+          </a>
+          <Link to="/roadmap">Road Map</Link>
+          <Link to="/liquidity">Liquidity</Link>
+          <Link to="/farms">Farms</Link>
+          <Link to="/pools">Pools</Link>
+        </Div>
       </Div>
       {/* RIGHT CONTENT */}
       <Div>
-        <h1>HEADER</h1>
-        <Button appearance="primary" color="violet" as={PillButton}>
-          <strong>Connect Wallet</strong>
-        </Button>
+        <Div>
+          <Dropdown title="Select Network" value="2">
+            <Dropdown.Item value="1">Ethereum</Dropdown.Item>
+            <Dropdown.Item value="2">Binance</Dropdown.Item>
+            <Dropdown.Item value="3">_</Dropdown.Item>
+          </Dropdown>
+        </Div>
+        <Div>
+          <Button
+            appearance="primary"
+            color="violet"
+            as={PillButton}
+            onClick={() => dispatch(modalConnect(true))}
+          >
+            <strong>
+              <Icon as={BiWallet} style={{ fontSize: "25px" }} /> Connect Wallet
+            </strong>
+          </Button>
+        </Div>
+        <Div>
+          <Icon
+            as={IoMdSettings}
+            style={{ fontSize: "30px", cursor: "pointer" }}
+            onClick={() => dispatch(modalSetting(true))}
+          />
+        </Div>
       </Div>
+      <ModalConnect />
+      <ModalSetting />
     </Container>
   );
 };

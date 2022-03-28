@@ -1,9 +1,13 @@
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
-import TradePage from "./pages/trade/TradePage";
 
 const HomePage = lazy(() => import("./pages/home/HomePage"));
+const NotFindPage = lazy(() => import("./pages/404/NotFindPage"));
+const FarmsPage = lazy(() => import("./pages/farms/FarmsPage"));
+const LiquidityPage = lazy(() => import("./pages/liquidity/LiquidityPage"));
+const PoolsPage = lazy(() => import("./pages/pools/PoolsPage"));
+const TradePage = lazy(() => import("./pages/trade/TradePage"));
 
 const App = () => {
   return (
@@ -33,6 +37,47 @@ const App = () => {
           element={
             <Suspense fallback={<div>Loading...</div>}>
               <TradePage />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="roadmap"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <h1>Road Map</h1>
+            </Suspense>
+          }
+        />
+        <Route
+          path="liquidity"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <LiquidityPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="pools"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <PoolsPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="farms"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <FarmsPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <NotFindPage />
             </Suspense>
           }
         />

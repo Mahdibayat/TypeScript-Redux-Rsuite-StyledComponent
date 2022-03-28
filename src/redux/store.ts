@@ -1,18 +1,16 @@
-import {
-  ActionType,
-  DispatchType,
-  ReduxSiteInterface,
-} from "./../scripts/interfaces";
-import { createStore, applyMiddleware, Store } from "redux";
-import thunk from "redux-thunk";
+import { createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";
-import { siteReducer } from "./reducer";
+import rootReducer from "./rootReducer";
+import createSagaMiddleware from "redux-saga";
+import rootSaga from "./sagas";
 
-let middlewares = [thunk, logger];
+const sagaMiddleware = createSagaMiddleware();
 
-export const store: Store<ReduxSiteInterface, ActionType> & {
-  dispatch: DispatchType;
-} = createStore(siteReducer, applyMiddleware(...middlewares));
+let middlewares = [sagaMiddleware, logger];
+
+export const store = createStore(rootReducer, applyMiddleware(...middlewares));
+
+sagaMiddleware.run(rootSaga);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootReduxState = ReturnType<typeof store.getState>;
