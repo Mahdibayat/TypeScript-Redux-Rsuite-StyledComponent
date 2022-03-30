@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { Button, Dropdown, Modal } from "rsuite";
+import { Button, Dropdown } from "rsuite";
 import styled from "styled-components";
 import { Icon } from "@rsuite/icons";
 import { IoMdSettings } from "react-icons/io";
 import { BiWallet } from "react-icons/bi";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useAppDispatch } from "../redux/hooks";
 import { modalConnect, modalSetting } from "../redux/actions";
 import ModalConnect from "../components/modals/ModalConnect";
 import ModalSetting from "../components/modals/ModalSetting";
@@ -56,6 +56,10 @@ const HeaderLayout = () => {
           </LogoArea>
         </Div>
         <Div>
+          <Link to="/liquidity">Liquidity</Link>
+          <Link to="/farms">Farms</Link>
+          <Link to="/pools">Pools</Link>
+          <Link to="/roadmap">Road Map</Link>
           <a
             href="https://site.arix.exchange/"
             target="_blank"
@@ -63,10 +67,6 @@ const HeaderLayout = () => {
           >
             About
           </a>
-          <Link to="/roadmap">Road Map</Link>
-          <Link to="/liquidity">Liquidity</Link>
-          <Link to="/farms">Farms</Link>
-          <Link to="/pools">Pools</Link>
         </Div>
       </Div>
       {/* RIGHT CONTENT */}
